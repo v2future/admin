@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hollycrm.mi.core.mapper.UserMapper">
+    <resultMap id="baseResultMap" type="com.hollycrm.mi.core.entity.SysUser">
+
+        <result column="user_code" property="user_code" />
+        <result column="user_name" property="user_name" />
+    </resultMap>
+
+    <sql id="where">
+        <if test="user_code != null">
+            and user_code = #{user_code}
+        </if>
+        <if test="user_name != null">
+            and user_name = #{user_name}
+        </if>
+    </sql>
+
+    <select id="get" resultMap="baseResultMap">
+        select * from tbl_sys_user where user_code = #{id}
+    </select>
+
+    <delete id="deleteById">
+        delete from tbl_sys_user where user_code = #{id}
+    </delete>
+
+    <insert id="insert" parameterType="com.hollycrm.mi.core.entity.SysUser">
+        insert into tbl_sys_user(
+            user_code,
+            user_name,
+            enabled
+        )
+        values(
+            #{user_code},
+            #{user_name},
+            #{enabled}
+        )
+    </insert>
+
+    <update id="update" parameterType="com.hollycrm.mi.core.entity.SysUser">
+        update tbl_sys_user
+        <set>
+            <if test="user_name != null">
+                user_name = #{user_name},
+            </if>
+
+        </set>
+        where user_code = #{user_code}
+    </update>
+
+    <update id="updateByExample" parameterType="com.hollycrm.mi.core.entity.SysUser">
+        update tbl_sys_user
+        set
+            user_name = #{user_name},
+            org_id = #{org_id}
+        where user_code = #{user_code}
+    </update>
+
+    <select id="selectCount" parameterType="java.util.Map" resultType="java.lang.Integer">
+        select count(1) from tbl_sys_user
+        <include refid="where"></include>
+    </select>
+
+    <select id="selectList" parameterType="java.util.Map" resultMap="baseResultMap">
+        select * from tbl_sys_user
+        <include refid="where"></include>
+    </select>
+</mapper>

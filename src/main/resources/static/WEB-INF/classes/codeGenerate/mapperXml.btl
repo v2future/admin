@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="${mapperPackage}.${entity}Mapper">
+    <resultMap id="baseResultMap" type="${entityPackage}.${entity}">
+        <% for ( field in table.fields) {%>
+        <result column="${field.propertyName}" property="${field.propertyName}" />
+        <%}%>
+    </resultMap>
+
+    <sql id="where">
+		<where>
+        <% for ( field in table.fields) {%>
+			<if test="${field.propertyName} != null">
+            and ${field.propertyName} = #{${field.propertyName}}
+			</if>
+        <%}%>
+		</where>
+    </sql>
+
+    <select id="get" resultMap="baseResultMap">
+        select * from ${table.name} where ${table.primaryKeyName} = #{id}
+    </select>
+
+    <delete id="deleteById">
+        delete from ${table.name} where ${table.primaryKeyName} = #{id}
+    </delete>
+
+    <insert id="insert" parameterType="${entityPackage}.${entity}">
+        insert into ${table.name}(
+        <% for ( field in table.fields) {%>
+            <% if ( !fieldLP.last) {%>
+            ${field.propertyName},
+            <%}%>
+            <% if ( fieldLP.last) {%>
+            ${field.propertyName}
+            <%}%>
+        <%}%>
+        )
+        values(
+        <% for ( field in table.fields) {%>
+            <% if ( !fieldLP.last) {%>
+            #{${field.propertyName}},
+            <%}%>
+            <% if ( fieldLP.last) {%>
+            #{${field.propertyName}}
+            <%}%>
+        <%}%>
+        )
+    </insert>
+
+    <update id="update" parameterType="${entityPackage}.${entity}">
+        update ${table.name}
+        <set>
+        <% for ( field in table.fields) {%>
+            <if test="${field.propertyName} != null">
+                ${field.propertyName} = #{${field.propertyName}},
+            </if>
+        <%}%>
+        </set>
+        where ${table.primaryKeyName} = #{id}
+    </update>
+
+    <update id="updateByExample" parameterType="${entityPackage}.${entity}">
+        update ${table.name}
+        set
+        <% for ( field in table.fields) {%>
+            <% if ( !fieldLP.last) {%>
+            ${field.propertyName} = #{${field.propertyName}},
+            <%}%>
+            <% if ( fieldLP.last) {%>
+            ${field.propertyName} = #{${field.propertyName}}
+            <%}%>
+        <%}%>
+        where ${table.primaryKeyName} = #{id}
+    </update>
+
+    <select id="selectCount" parameterType="java.util.Map" resultType="java.lang.Integer">
+        select count(1) from ${table.name}
+        <include refid="where"></include>
+    </select>
+
+    <select id="selectList" parameterType="java.util.Map" resultMap="baseResultMap">
+        select * from ${table.name}
+        <include refid="where"></include>
+    </select>
+</mapper>

@@ -1,0 +1,16 @@
+package ${mapperPackage};
+
+import com.hollycrm.mi.core.mapper.BaseMapper;
+import ${entityPackage}.${entity};
+
+import org.apache.ibatis.annotations.Mapper;
+
+/**
+ * 描述: ${table.name}
+ * author: ${author}
+ * date: ${date}
+ */
+@Mapper
+public interface ${entity}Mapper extends BaseMapper<${entity}> {
+
+}

@@ -1,0 +1,35 @@
+package ${servicePackage};
+
+import ${entityPackage}.${entity};
+
+/**
+ * 描述: ${table.comment}
+ * author: ${author}
+ * date: ${date}
+ */
+public interface ${entity}Service {
+
+    ${entity} get(String id);
+
+    void deleteById(String id);
+
+    void insert(${entity} entity);
+
+    void update(${entity} entity);
+
+    void updateByExample(${entity} example);
+
+    Integer selectCount(Map<String, Object> param);
+
+    List<${entity}> selectList(Map<String, Object> param);
+
+    /**
+     * 分页
+     * @param param
+     * @param startPage
+     * @param pageSize
+     * @return
+     */
+    Pager page(Map<String, Object> param, int startPage, int pageSize);
+
+}

@@ -1,0 +1,79 @@
+package ${serviceImplPackage};
+
+import ${entityPackage}.${entity};
+import ${mapperPackage}.${entity}Mapper;
+import ${servicePackage}.${entity}Service;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.Map;
+
+/**
+ * 描述: ${table.comment}
+ * author: ${author}
+ * date: ${date}
+ */
+@Service
+public class ${entity}ServiceImpl implements ${entity}Service {
+
+    <%
+        var mapperName = strutil.toLowerCase(strutil.subStringTo(entity, 0, 1)) + strutil.subString(entity, 1) + "Mapper";
+    %>
+    @Autowired
+    private ${entity}Mapper ${mapperName};
+
+    @Override
+    public ${entity} get(String id) {
+        return ${mapperName}.get(id);
+    }
+
+    @Override
+    public void deleteById(String id) {
+        ${mapperName}.deleteById(id);
+    }
+
+    @Override
+    public void insert(${entity} entity) {
+        ${mapperName}.insert(entity);
+    }
+
+    /**
+     * 如果某属性为null，会过滤
+     * @param sysUser
+     */
+    @Override
+    public void update(${entity} entity) {
+        ${mapperName}.update(entity);
+    }
+
+    /**
+     * 如果example某个属性为null，会把表该字段设为null
+     * @param example
+     */
+    @Override
+    public void updateByExample(${entity} example) {
+        ${mapperName}.updateByExample(entity);
+    }
+
+    @Override
+    public Integer selectCount(Map<String, Object> param) {
+        return ${mapperName}.selectCount( param);
+    }
+
+    @Override
+    public List<${entity}> selectList(Map<String, Object> param) {
+        return ${mapperName}.selectList( param);
+    }
+
+    @Override
+    public Pager page(Map<String, Object> param, int startPage, int pageSize) {
+        Pager result = new Pager();
+        result.setPageNo( startPage);
+        result.setPageSize( pageSize);
+        PageHelper.startPage(startPage, pageSize);
+        Page list = (Page)${mapperName}.selectList( param);
+        result.setList( list);
+        result.setTotalCount( new Long(list.getTotal()).intValue());
+        return result;
+    }
+}
