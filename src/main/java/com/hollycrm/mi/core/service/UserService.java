@@ -12,6 +12,8 @@ public interface UserService {
 
     void deleteById(String id);
 
+    void deleteAll(String ids);
+
     void insert(SysUser sysUser);
 
     void update(SysUser sysUser);

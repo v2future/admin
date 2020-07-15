@@ -3,10 +3,14 @@ package com.hollycrm.mi.core.bean;
 import java.util.List;
 
 /**
- * 分页信息
+ * LayUI分页信息
  * @param <T>
  */
 public class Pager<T> {
+
+    private String code = "0";
+    private boolean success = false;
+    private String msg;
 
     protected int pageNo = 1;
 
@@ -14,9 +18,9 @@ public class Pager<T> {
 
     protected int pageSize = 10;
 
-    protected int totalCount = -1;
+    protected int count = -1;
 
-    protected List<T> list = null;
+    protected List<T> data = null;
 
     public long getPageNo() {
         return pageNo;
@@ -30,21 +34,15 @@ public class Pager<T> {
     }
 
     public long getTotalPages() {
-        if (totalCount < 0) {
+        if (count < 0) {
             return -1;
         }
-        int totalPages = totalCount / pageSize;
-        if (totalCount % pageSize > 0) {
+        int totalPages = count / pageSize;
+        if (count % pageSize > 0) {
             totalPages++;
         }
         return totalPages;
     }
-
-    /*
-    public void setTotalPages(int totalPages) {
-        this.totalPages = totalPages;
-    }
-    */
 
     public int getPageSize() {
         return pageSize;
@@ -54,19 +52,43 @@ public class Pager<T> {
         this.pageSize = pageSize;
     }
 
-    public long getTotalCount() {
-        return totalCount;
+    public long getCount() {
+        return count;
     }
 
-    public void setTotalCount(int totalCount) {
-        this.totalCount = totalCount;
+    public void setCount(int count) {
+        this.count = count;
     }
 
-    public List<T> getList() {
-        return list;
+    public List<T> getData() {
+        return data;
     }
 
-    public void setList(List<T> list) {
-        this.list = list;
+    public void setData(List<T> data) {
+        this.data = data;
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
+    }
+
+    public String getMsg() {
+        return msg;
+    }
+
+    public void setMsg(String msg) {
+        this.msg = msg;
+    }
+
+    public boolean isSuccess() {
+        return success;
+    }
+
+    public void setSuccess(boolean success) {
+        this.success = success;
     }
 }

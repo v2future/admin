@@ -1,6 +1,8 @@
 /**
 配色方案（如有需要，请自行配置）
  */
+/*body{font-size:13px;}*/
+
 /**头部-配色*/
 .layui-layout-admin .layui-header {
     background-color: #1aa094 !important;
@@ -67,8 +69,6 @@
     transition: all .2s;
 }
 
-
-/**logo演示（通用） */
 .layui-layout-admin .layuimini-logo {
     font-weight: bold;
     color: #ffffff !important;
@@ -802,8 +802,12 @@
 
 
 /** reset****/
+.layui-nav * {
+    font-size: 13px;
+}
 .ui-nav-close {
 	font-size: 13px;
 	padding:5px;
 }
 .ui-nav-close dd a {font-size: 13px;}
+.layui-tab-title li { font-size: 13px;}

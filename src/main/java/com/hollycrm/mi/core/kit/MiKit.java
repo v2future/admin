@@ -1,5 +1,9 @@
 package com.hollycrm.mi.core.kit;
 
+import org.apache.commons.beanutils.BeanUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.math.BigDecimal;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -14,6 +18,8 @@ import java.util.UUID;
  * 常用工具方法
  */
 public class MiKit {
+
+    private static final Logger LOG = LoggerFactory.getLogger(MiKit.class);
 
     /**
      * 生成uuid
@@ -107,6 +113,41 @@ public class MiKit {
             //impossible
         }
         return "";
+    }
+
+    /**
+     * 分页页面对象
+     * @param code
+     * @param msg
+     * @return
+     */
+    public static String getDefaultPageJson(String code, String msg){
+        StringBuilder buffer = new StringBuilder();
+        buffer.append("{\"code\":\"").append(code).
+                append("\", msg:\"").append(msg).append("\", data:[]}");
+        return buffer.toString();
+
+    }
+
+    /**
+     * 普通页面对象
+     * @param success
+     * @param msg
+     * @return
+     */
+    public static  String getDefaultJson(boolean success, String msg){
+        StringBuilder buffer = new StringBuilder();
+        buffer.append("{\"success\":").append(success).
+                append(",\"msg\":\"").append(msg).append("\"}");
+        return buffer.toString();
+    }
+
+    public static void copyProperties(Object target, Object source){
+        try {
+            BeanUtils.copyProperties(target, source);
+        }catch (Exception e) {
+            LOG.error("对象copy异常", e);
+        }
     }
 
 }

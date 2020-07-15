@@ -1,16 +1,16 @@
 body {
-    margin: 15px 15px 15px 15px;
+    font-size: 13px;
+    margin: 5px 10px 10px 10px;
     background: #f2f2f2;
 }
 
-.layuimini-container {
+.ui-container {
     border: 1px solid #f2f2f2;
     border-radius: 5px;
-    background-color: #ffffff
 }
 
-.layuimini-main {
-    margin: 10px 10px 10px 10px;
+.ui-main {
+    margin: 2px 5px 5px 5px;
 }
 
 /**必填红点 */
@@ -67,4 +67,33 @@ body {
     -webkit-border-radius: 2em;
     -moz-border-radius: 2em;
     border-radius: 2em
+}
+
+/*
+ * reset
+ */
+.layui-table-tool { background-color: #ffffff;}
+.layui-btn{ font-size: 13px;}
+.layui-table tbody tr:hover, .layui-table-click, .layui-table-hover, .layui-table[lay-even] tr:nth-child(even) {
+    background-color: #f9fafa;
+}
+/**
+ *
+ */
+
+.ui-header {padding: 10px 10px 10px 10px; background-color: #fff;}
+.ui-body { background-color: #fff;}
+.ui-form-label {
+    float: left;
+    display: block;
+    position: relative;
+    width: 80px;
+    padding: 8px 5px 8px 5px;
+    height: 38px;
+    line-height: 20px;
+    text-align: right;
+    overflow: hidden;
+    box-sizing: border-box;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }

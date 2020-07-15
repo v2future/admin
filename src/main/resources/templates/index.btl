@@ -20,6 +20,7 @@
     <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
     <style id="layuimini-bg-color">
+        body{font-size:13px;}
     </style>
 </head>
 <body class="layui-layout-body layuimini-all">
@@ -99,9 +100,8 @@
 <script src="${ctxPath}/static/lib/layui-v2.5.5/layui.js" charset="utf-8"></script>
 <script src="${ctxPath}/static/js/lay-config.js?v=2.0.0" charset="utf-8"></script>
 <script>
-    layui.use(['jquery', 'layer', 'miniAdmin'], function () {
-        var $ = layui.jquery,
-            layer = layui.layer,
+    layui.use(['layer', 'miniAdmin'], function () {
+        var layer = layui.layer,
             miniAdmin = layui.miniAdmin;
 
         var options = {
@@ -115,10 +115,6 @@
             maxTabNum: 20,              // 最大的tab打开数量
         };
         miniAdmin.render(options);
-
-        $('.login-out').on("click", function () {
-            //TODO
-        });
     });
 </script>
 </body>

@@ -29,6 +29,18 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public void deleteAll(String ids) {
+        if ( ids == null || "".equals(ids))
+            return;
+        String[] idArr = ids.split(",");
+        if ( idArr.length == 0)
+            return;
+        for (String id : idArr) {
+            userMapper.deleteById(id);
+        }
+    }
+
+    @Override
     public void insert(SysUser sysUser) {
         userMapper.insert(sysUser);
     }
@@ -68,8 +80,8 @@ public class UserServiceImpl implements UserService {
         result.setPageSize( pageSize);
         PageHelper.startPage(startPage, pageSize);
         Page list = (Page)userMapper.selectList( param);
-        result.setList( list);
-        result.setTotalCount( new Long(list.getTotal()).intValue());
+        result.setData( list);
+        result.setCount( new Long(list.getTotal()).intValue());
         return result;
     }
 }

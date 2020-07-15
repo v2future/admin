@@ -23,7 +23,7 @@
           "child": [
             {
               "title": "部门人员管理",
-              "href": "http://www.baidu.com",
+              "href": "UserRest/list",
               "icon": "fa fa-tachometer",
               "target": "_self"
             },
@@ -48,7 +48,7 @@
           "target": "_self"
         },
         {
-          "title": "其它界面12",
+          "title": "其它界面",
           "href": "",
           "icon": "fa fa-snowflake-o",
           "target": "",

@@ -8,12 +8,14 @@
     </resultMap>
 
     <sql id="where">
-        <if test="user_code != null">
-            and user_code = #{user_code}
-        </if>
-        <if test="user_name != null">
-            and user_name = #{user_name}
-        </if>
+        <where>
+            <if test="user_code != null and user_code != ''">
+                and user_code = #{user_code}
+            </if>
+            <if test="user_name != null and user_name != ''">
+                and user_name = #{user_name}
+            </if>
+        </where>
     </sql>
 
     <select id="get" resultMap="baseResultMap">
