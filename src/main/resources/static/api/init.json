@@ -22,14 +22,26 @@
           "target": "_self",
           "child": [
             {
-              "title": "部门人员管理",
+              "title": "人员管理",
               "href": "UserRest/list",
+              "icon": "fa fa-tachometer",
+              "target": "_self"
+            },
+            {
+              "title": "部门人员管理",
+              "href": "UserRest/",
               "icon": "fa fa-tachometer",
               "target": "_self"
             },
             {
               "title": "角色权限管理",
               "href": "page/welcome-2.html",
+              "icon": "fa fa-tachometer",
+              "target": "_self"
+            },
+            {
+              "title": "菜单管理",
+              "href": "UserRest/",
               "icon": "fa fa-tachometer",
               "target": "_self"
             }
